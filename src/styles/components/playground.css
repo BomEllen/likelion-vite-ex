@@ -1,0 +1,10 @@
+.Playground {
+  padding: 48px;
+
+  h1 {
+    margin-block: 0 12px;
+    font-size: 20px;
+    font-weight: 300;
+    color: rgba(0 0 0 / 74%);
+  }
+}
