@@ -1,0 +1,16 @@
+[
+  {
+    "id": "8cf47028-402a-44c0-b43c-e44781d8880b",
+    "name": "이삼정",
+    "email": "23j@designer.io",
+    "profileImage": "/files/photo-02.jpg",
+    "password": "$2b$09$cQduZLwNSu/OIkYWB2ZTheTtpvlTV9qmKeBCbz2fP6BjsyZqlu4se"
+  },
+  {
+    "id": "a78e673f-09e8-48d1-9415-dc214fe05cdc",
+    "name": "지훈",
+    "email": "yamoo9@naver.com",
+    "profileImage": "/files/profile-03.jpg",
+    "password": "$2b$09$RajfNUUenRVJ9V86NpAhVeFxHh/qK011Bs3f/VrAh4HL3aJ4YTeQS"
+  }
+]
