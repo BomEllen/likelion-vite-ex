@@ -1,3 +1,4 @@
+import cors from 'cors';
 import express from 'express';
 import { resolve } from 'node:path';
 import fileUpload from 'express-fileupload';
@@ -7,6 +8,7 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(resolve('./public')));
 app.use(fileUpload());
+app.use(cors());
 
 app.post('/api/signin', async (request, response) => {
   const { useremail, userpassword } = request.body;
@@ -77,12 +79,12 @@ app.post('/api/signup', async (request, response) => {
       const { password, ...user } = newUser;
       response.status(201).json(user);
     } else {
-      response
-        .status(400)
-        .send(`${username}님은 회원 가입을 이미 하셨습니다. 😥`);
+      response.status(400).json({
+        message: `${username}님은 ${useremail} 이메일 주소로 회원 가입을 이미 하셨습니다. 😥`,
+      });
     }
   } catch (error) {
-    response.status(500).send('회원가입에 문제가 발생했습니다.');
+    response.status(500).json(error);
   }
 });
 

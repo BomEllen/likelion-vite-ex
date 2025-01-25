@@ -2,65 +2,13 @@ import { useState } from 'react';
 import FormInput from '@/components/form-input';
 import FormTextArea from '@/components/form-textarea';
 
-const formStyles = {
-  display: 'flex',
-  flexFlow: 'column',
-  alignItems: 'start',
-  gap: 20,
-};
-
-function ReactForm() {
-  const [age, setAge] = useState<number>(22);
-  const [color, setColor] = useState<string>('#2483DB');
-  const [limitAge, setLimitAge] = useState<number>(40);
-
-  const [profileImage, setProfileImage] = useState<string | null>(null);
-
-  const handleUploadProfile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { target } = e;
-
-    if (target.files && target.files.length > 0) {
-      const file = target.files.item(0);
-      if (file) {
-        setProfileImage(URL.createObjectURL(file));
-      }
-    }
-  };
-
-  // 컴포넌트 상태 변수 (state variable: 컴포넌트 외부의 상태 관리 시스템 기억)
-  const [photos, setPhotos] = useState<File[]>([]);
-
-  // 파생된 상태 변수 (derived state variable)
-  const photoURLs = photos.map((photo) => URL.createObjectURL(photo));
-
-  // 상태 업데이트 핸들러 (이벤트 감지되면 실행)
-  const handleUploadPhotos = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const fileList = e.target.files;
-    if (fileList) {
-      setPhotos(Object.values(fileList)); // [File, File, ...]
-    }
-  };
-
-  const [contents, setContents] = useState<string>(
-    '모든 사람들에게 전할 메시지를 남겨주세요~'
-  );
-
-  const handleUpdateContents = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setContents(e.target.value);
-  };
-
-  // radio input state (checked)
-  const [isFemale, setIsFemale] = useState<boolean>(true);
-  const handleToggleGender = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const isFemale = e.target.value === 'female';
-    setIsFemale(isFemale);
-  };
-
-  // checkbox input state (checked)
-  // 배열
-  // Checkbox { id?, name, label, value, checked }
-  // Checkbox[]
-  const [hobbyList, setHobbyList] = useState([
+// React에 의해 제어되는 폼 입력 초깃값
+const initialFormData = {
+  limitAge: 40,
+  profileImage: null,
+  color: '#ffffff',
+  photos: [],
+  hobbies: [
     {
       name: 'userhobby',
       label: '공부',
@@ -85,15 +33,68 @@ function ReactForm() {
       value: 'photo-body-profile',
       checked: true,
     },
-  ]);
+  ],
+};
+
+function ReactForm() {
+  // React에 의해 제어되는 입력 값 초기화 함수
+  const handleResetForm = () => {
+    setLimitAge(initialFormData.limitAge);
+    setProfileImage(initialFormData.profileImage);
+    setPhotos(initialFormData.photos);
+    setHobbyList(initialFormData.hobbies);
+  };
+
+  const [color, setColor] = useState<string>(initialFormData.color);
+  const handleChangeColor = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const nextColorValue = e.currentTarget.value;
+    setColor(nextColorValue);
+  };
+
+  const [limitAge, setLimitAge] = useState<number>(initialFormData.limitAge);
+
+  const [profileImage, setProfileImage] = useState<string | null>(
+    initialFormData.profileImage
+  );
+
+  const handleUploadProfile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { target } = e;
+
+    if (target.files && target.files.length > 0) {
+      const file = target.files.item(0);
+      if (file) {
+        setProfileImage(URL.createObjectURL(file));
+      }
+    }
+  };
+
+  // 컴포넌트 상태 변수 (state variable: 컴포넌트 외부의 상태 관리 시스템 기억)
+  const [photos, setPhotos] = useState<File[]>(initialFormData.photos);
+
+  // 파생된 상태 변수 (derived state variable)
+  const photoURLs = photos.map((photo) => URL.createObjectURL(photo));
+
+  // 상태 업데이트 핸들러 (이벤트 감지되면 실행)
+  const handleUploadPhotos = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const fileList = e.target.files;
+    if (fileList) {
+      setPhotos(Object.values(fileList)); // [File, File, ...]
+    }
+  };
+
+  // checkbox input state (checked)
+  // 배열
+  // Checkbox { id?, name, label, value, checked }
+  // Checkbox[]
+  const [hobbyList, setHobbyList] = useState(initialFormData.hobbies);
 
   // derived state
   // - 모두 체크 되었나?
-  const isAllCheckedHobbyList = hobbyList.every((hobby) => hobby.checked);
-  console.log({ isAllCheckedHobbyList });
+  // const isAllCheckedHobbyList = hobbyList.every((hobby) => hobby.checked);
+  // console.log({ isAllCheckedHobbyList });
   // - 모두 체크 안되었나?
-  const isNotAllCheckedHobbyList = hobbyList.every((hobby) => !hobby.checked);
-  console.log({ isNotAllCheckedHobbyList });
+  // const isNotAllCheckedHobbyList = hobbyList.every((hobby) => !hobby.checked);
+  // console.log({ isNotAllCheckedHobbyList });
 
   const handleCheckedHobbies = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked: nextCheckedValue } = e.target;
@@ -112,11 +113,146 @@ function ReactForm() {
     setHobbyList(nextHobbyList);
   };
 
+  // 1. 아이템 1개 선택할 때 제어
+  const [pickSpiceOne, setPickSpiceOne] = useState<string>('rosmari');
+  const handlePickSpiceOne = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedOptionValue = e.currentTarget.value;
+    setPickSpiceOne(selectedOptionValue);
+  };
+
+  // 2. 여러 아이템 선택할 때 제어
+  const [pickSpiceMultiple, setPickSpiceMultiple] = useState<string[]>([
+    'lemongrass',
+  ]);
+  const handlePickSpiceMultiple = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const { selectedOptions } = e.currentTarget; // HTMLCollection 유사 배열 (배열 아님)
+    const selectedOptionList = Array.from(selectedOptions); // 유사 배열 -> 배열 변경 (배열 능력 사용 목적)
+    const selectedOptionValues = selectedOptionList.map(
+      (option) => option.value
+    ); // 배열의 map 메서드를 사용해 각 항목을 순환한 후 처리된 새로운 배열 반환
+
+    setPickSpiceMultiple(selectedOptionValues);
+  };
+
+  // [진행률 데모]
+  // 진행률 상태 정의
+  // [상태]
+  const [progressValue, setProgressValue] = useState<number>(15);
+
+  // [파생된 상태]
+  const progressPercent = `${progressValue}%`;
+
+  // 진행률 상태 업데이트 로직 핸들러 함수 정의 (화면 업데이트)
+  // - 상태 값 변경 시, 진행률이 변경
+  // [이벤트 핸들러]
+  const handleChangeProgressValue = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const nextProgressValue = Number(e.currentTarget.value);
+    setProgressValue(nextProgressValue);
+  };
+
   return (
     <div className="ReactForm">
       <h2>React 폼(form)</h2>
 
-      <form style={formStyles}>
+      <form
+        method="POST"
+        action="http://localhost:4000/api/hello"
+        id="ReactForm"
+        style={formStyles}
+      >
+        <div
+          style={{
+            display: 'flex',
+            gap: 8,
+            alignItems: 'center',
+            marginBlockStart: 20,
+          }}
+        >
+          <FormInput
+            type="range"
+            label="진행률 업데이트"
+            min={0}
+            max={100}
+            step={10}
+            value={progressValue}
+            onChange={handleChangeProgressValue}
+            style={{
+              accentColor: '#171c28',
+            }}
+          />
+          <output style={{ translate: '0 12px' }}>{progressPercent}</output>
+        </div>
+
+        {/* progress */}
+        <div
+          style={{
+            display: 'flex',
+            flexFlow: 'column',
+            gap: 8,
+            marginBlockEnd: 20,
+          }}
+        >
+          <label htmlFor="progress-bar">진행률</label>
+          <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+            <progress
+              id="progress-bar"
+              value={progressValue}
+              max="100"
+              style={{
+                accentColor: '#171c28',
+              }}
+            >
+              {progressPercent}
+            </progress>
+            <output>{progressPercent}</output>
+          </div>
+        </div>
+
+        {/* select / options */}
+        <div
+          className="ComboBox"
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
+          <label htmlFor="spice-pick-1">향신료 1개 선택</label>
+          <select
+            value={pickSpiceOne}
+            onChange={handlePickSpiceOne}
+            form="ReactForm"
+            id="spice-pick-1"
+            name="spice-pick-1"
+          >
+            <option value="">맘에 드는 향신료 1개 선택</option>
+            <option value="lemongrass">레몬그라스</option>
+            <option value="rosmari">로즈마리</option>
+            <option value="lavender">라벤더</option>
+          </select>
+        </div>
+
+        <div
+          className="ComboBox"
+          style={{ display: 'flex', flexDirection: 'column' }}
+        >
+          <label htmlFor="spice-pick-n">향신료 여러개 선택</label>
+          <select
+            multiple
+            value={pickSpiceMultiple}
+            onChange={handlePickSpiceMultiple}
+            form="ReactForm"
+            id="spice-pick-n"
+            name="spice-pick-n"
+          >
+            <option value="">맘에 드는 향신료 N개 선택</option>
+            <option value="lemongrass">레몬그라스</option>
+            <option value="rosmari">로즈마리</option>
+            <option value="lavender">라벤더</option>
+          </select>
+        </div>
+
         {/* type=radio */}
         <fieldset>
           <legend>성별</legend>
@@ -132,16 +268,13 @@ function ReactForm() {
               label="여성"
               name="usergender"
               value="female"
-              checked={isFemale}
-              onChange={handleToggleGender}
+              defaultChecked
             />
             <FormInput
               type="radio"
               label="남성"
               name="usergender"
               value="male"
-              checked={!isFemale}
-              onChange={handleToggleGender}
             />
           </div>
         </fieldset>
@@ -176,29 +309,20 @@ function ReactForm() {
         <FormInput type="email" label="이메일" placeholder="user@company.io" />
 
         {/* type=number, controlled component */}
-        <FormInput
-          type="number"
-          label="나이"
-          value={age}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            const { value } = e.target;
-            // const nextAgeValue: number = +value;
-            // const nextAgeValue: number = Number(value);
-            const nextAgeValue: number = parseInt(value, 10);
-            setAge(nextAgeValue);
-          }}
-        />
+        <FormInput type="number" label="나이" defaultValue={24} />
 
         {/* type=color */}
-        <FormInput
-          type="color"
-          label="색상"
-          value={color}
-          onChange={(e) => {
-            const { value } = e.target;
-            setColor(value);
-          }}
-        />
+        <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+          <FormInput
+            type="color"
+            label="색상"
+            value={color}
+            onChange={handleChangeColor}
+          />
+          <output style={{ translate: '0 12px', color, fontWeight: 700 }}>
+            {color}
+          </output>
+        </div>
 
         {/* type=range */}
         <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
@@ -226,14 +350,13 @@ function ReactForm() {
         <FormTextArea
           label="인사말"
           name="contents"
-          value={contents}
-          onChange={handleUpdateContents}
+          placeholder="사랑하는 이들에게 따뜻한 말을 전해주세요~"
           resize="vertical"
         />
         <FormTextArea
           label="프로포즈"
           name="propose"
-          defaultValue="propose"
+          placeholder="아름답고 서정적인 대화로 마음을 훔치세요~"
           resize="horizontal"
         />
 
@@ -281,7 +404,9 @@ function ReactForm() {
 
         <div style={{ display: 'flex', gap: 8 }}>
           <button type="submit">제출</button>
-          <button type="reset">초기화</button>
+          <button type="reset" onClick={handleResetForm}>
+            초기화
+          </button>
         </div>
       </form>
     </div>
@@ -289,3 +414,10 @@ function ReactForm() {
 }
 
 export default ReactForm;
+
+const formStyles = {
+  display: 'flex',
+  flexFlow: 'column',
+  alignItems: 'start',
+  gap: 20,
+};
