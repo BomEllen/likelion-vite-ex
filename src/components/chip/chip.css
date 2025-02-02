@@ -1,0 +1,26 @@
+@layer components {
+  .Chip {
+    user-select: none;
+    cursor: pointer;
+    display: inline-flex;
+    padding: 8px 12px;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    color: #3d3d41;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.10);
+    border-radius: 20px;
+
+    &[aria-pressed="true"] {
+      background: #004fff;
+      color: #fff;
+    }
+
+    &[aria-disabled="true"] {
+      cursor: not-allowed;
+    }
+  }
+}

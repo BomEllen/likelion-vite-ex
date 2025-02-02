@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import FormInput from '@/components/form-input';
-import FormTextArea from '@/components/form-textarea';
+import FormInput from '@/components/form/form-input';
+import FormTextArea from '@/components/form/form-textarea';
 
 // React에 의해 제어되는 폼 입력 초깃값
 const initialFormData = {

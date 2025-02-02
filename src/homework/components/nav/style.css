@@ -1,0 +1,25 @@
+@layer components {
+  .nav {
+    --spacing: 4px;
+
+    display: flex;
+    gap: calc(var(--spacing) * 3);
+    margin-block: calc(var(--spacing) * 4);
+    border-top: 0.5px solid currentColor;
+    border-bottom: 0.5px solid currentColor;
+    padding: calc(var(--spacing) * 3);
+
+    a {
+      color: #464444;
+      padding: 4px;
+
+      &.active {
+        font-weight: 800;
+      }
+
+      &:hover:not(:focus,&.active) {
+        color: #9a7645;
+      }
+    }
+  }
+}

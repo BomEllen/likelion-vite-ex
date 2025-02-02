@@ -1,0 +1,16 @@
+@import 'tailwindcss';
+
+/* @layer theme, base, components, utilties;
+
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/preflight.css' layer(base);
+@import 'tailwindcss/utilities.css' layer(utilities); */
+
+@theme {
+  /* 디자인 토큰 구성 */
+  --color-euid-gray-200: #d7dadf;
+}
+
+@utility wrapper {
+  @apply min-w-80 max-w-180 mx-auto;
+}

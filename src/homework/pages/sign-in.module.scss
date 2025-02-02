@@ -1,0 +1,13 @@
+$color-white: #fff;
+
+.signInForm {
+  --form-bg-color: #{$color-white};
+
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  gap: 8px;
+  padding: 24px 24px 48px 24px;
+  border-radius: 12px;
+  background: var(--form-bg-color);
+}

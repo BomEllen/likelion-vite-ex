@@ -1,0 +1,17 @@
+@layer components {
+  .FormTextArea {
+    display: flex;
+    flex-flow: column;
+    gap: 4px;
+
+    textarea {
+      padding: 8px;
+      font-size: 14px;
+      color: rgba(0 0 0 / 90%);
+
+      &[aria-disabled="true"] {
+        cursor: not-allowed;
+      }
+    }
+  }
+}

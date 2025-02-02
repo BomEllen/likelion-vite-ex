@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { ChipListType } from '@/types/chip';
-import ChipList from '@/components/chip-list';
+import ChipList from '@/components/chip/chip-list';
 import { chips } from '@/data/chips';
 
 function Playground() {

@@ -1,30 +1,3 @@
 [
-  {
-    "id": "17529b75-0d90-4d66-9224-dc61159fafca",
-    "name": "지훈",
-    "email": "yamoo9@naver.com",
-    "profileImage": "/files/proflie-01.jpg",
-    "password": "$2b$09$11p.0vldbjBj4nKeh6/zlen2w9.hJTYIx69R2RaX7eee7bJebf4.e"
-  },
-  {
-    "id": "a7ef2fc8-652a-4904-897e-67b1549ad739",
-    "name": "박정아",
-    "email": "parja@you.com",
-    "profileImage": "/files/proflie-03.jpg",
-    "password": "$2b$09$9KIPmUhOnrGmrGN2Tb0zv.IBcWYc7BXomQ4VOAZQFOlL57GHdhrIO"
-  },
-  {
-    "id": "70c73c80-7d79-474e-96ed-6693b05e5975",
-    "name": "지우섭",
-    "email": "jee@naver.com",
-    "profileImage": "/files/proflie-05.jpg",
-    "password": "$2b$09$8EX35XBy2wp1mQ0zrzqMMOc6CEPOid3ZuLjSrJonHMuWPW6j210xm"
-  },
-  {
-    "id": "ed135c7e-eec3-40c1-a2ab-5871e5e16d93",
-    "name": "박준",
-    "email": "parkjun@naver.com",
-    "profileImage": "/files/proflie-04.jpg",
-    "password": "$2b$09$sDT5hzfGFVgBAJGRfI23uuYfQTXCEnVVJ3T3F4dOtwJOPu/lmN7ke"
-  }
+  
 ]
