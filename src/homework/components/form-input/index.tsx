@@ -49,6 +49,7 @@ function FormInput({
               onRender={<IconEyeOn />}
               isOff={isOff}
               onClick={handleToggle}
+              className="p-1"
             />
           )}
         </div>

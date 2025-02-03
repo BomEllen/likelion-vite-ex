@@ -1,3 +1,5 @@
+import { tm } from '@/utils/tw-merge';
+
 type ToggleButtonProps = React.ComponentProps<'button'> & {
   label: string;
   isOff?: boolean;
@@ -13,11 +15,14 @@ function ToggleButton({
   className = '',
   ...buttonProps
 }: ToggleButtonProps) {
-  const buttonStyles = `
-    flex justify-center items-center 
-    size-8 rounded-md border-0 p-0 bg-transparent
-    leading-none hover:not-[:disabled,[aria-disabled=true]]:bg-black/10
-  ${className}`;
+  const buttonStyles = tm(
+    `flex justify-center items-center`,
+    `size-8 rounded-md border-0 px-0 py-0 bg-transparent`,
+    `leading-none`,
+    `hover:not-[:disabled,[aria-disabled=true]]:bg-black/10`,
+    // { 'bg-sky-300': !isOff },
+    className
+  );
 
   return (
     <button className={buttonStyles} {...buttonProps}>

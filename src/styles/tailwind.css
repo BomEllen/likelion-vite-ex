@@ -9,6 +9,7 @@
 @theme {
   /* 디자인 토큰 구성 */
   --color-euid-gray-200: #d7dadf;
+  --color-mint-200: #e6f7ff;
 }
 
 @utility wrapper {
