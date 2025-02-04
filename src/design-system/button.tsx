@@ -12,15 +12,12 @@ const buttonVariants = cva(
         // 속성 값 (스타일)
         primary: 'bg-blue-500 text-white border-transparent rounded-md',
         secondary: 'bg-white text-gray-800 border-slate-200 rounded-md',
-        tertiary: '',
       },
       // 컴포넌트 속성
       size: {
         // 속성 값 (스타일)
-        'x-small': '',
         small: 'text-sm py-1 px-2',
         medium: 'text-base py-2 px-4',
-        large: '',
       },
       // 컴포넌트 속성
       disabled: {

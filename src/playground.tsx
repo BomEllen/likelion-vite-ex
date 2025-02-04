@@ -1,35 +1,45 @@
 import { useState } from 'react';
 import Nav from '@/homework/components/nav';
-import { getUIView, type UIView } from '@/homework/lib/ui-view';
+import { getUIView } from '@/homework/lib/ui-view';
 import StateManagement from '@/homework/pages/state-management';
 import SignInForm from '@/homework/pages/sign-in';
 import SignUpForm from '@/homework/pages/sign-up';
+import TicTacToe from './homework/pages/tic-tac-toe';
 
-function Playground() {
-  const [uiView] = useState<UIView>(getUIView);
-
-  let ViewComponent: React.ReactElement | null = null;
+const getViewElement = (uiView: string) => {
+  let viewElement: React.ReactElement | null = null;
 
   switch (uiView) {
     case 'signin': {
-      ViewComponent = <SignInForm />;
+      viewElement = <SignInForm />;
       break;
     }
     case 'signup': {
-      ViewComponent = <SignUpForm />;
+      viewElement = <SignUpForm />;
       break;
     }
     case 'state-management': {
-      ViewComponent = <StateManagement />;
+      viewElement = <StateManagement />;
+      break;
+    }
+    case 'tic-tac-toe': {
+      viewElement = <TicTacToe />;
       break;
     }
   }
+
+  return viewElement;
+};
+
+function Playground() {
+  const [uiView] = useState<string>(getUIView);
+  const viewElement = getViewElement(uiView);
 
   return (
     <section className="Playground bg-euid-gray-200 wrapper">
       <h1>플레이그라운드</h1>
       <Nav />
-      {ViewComponent}
+      {viewElement}
     </section>
   );
 }

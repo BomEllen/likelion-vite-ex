@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+  <meta charset="UTF-8" />
+  <title>HTML 폼(Form) 가이드</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="웹 표준 방식으로 HTML 폼(form)을 컨트롤하는 방법을 학습합니다." />
+  <meta name="theme-color" content="#006eb4" />
+  <link rel="icon" href="https://www.vectorlogo.zone/logos/w3_html5/w3_html5-icon.svg" />
+</head>
+<body>
+  <div class="html-form-demo">
+    <section style="margin-inline: 48px">
+      <h2>로그인 폼 (POST 메서드)</h2>
+      <form
+        action="http://localhost:4000/api/signin"
+        method="POST"
+      >
+        <div style="margin-block-end: 8px">
+          <label for="userEmailSignIn">이메일</label>
+          <input
+            type="email"
+            name="useremail"
+            id="userEmailSignIn"
+          />
+        </div>
+        <div style="margin-block-end: 8px">
+          <label for="userPasswordSignIn">패스워드</label>
+          <input
+            type="password"
+            name="userpassword"
+            id="userPasswordSignIn"
+          />
+        </div>
+        <button type="submit">로그인</button>
+        <button type="reset">초기화</button>
+      </form>
+    </section>
+    
+    <hr style="margin-block-start: 32px;" />
+    
+    <section style="margin-inline: 48px">
+      <h2>회원가입 폼 (POST 메서드)</h2>
+      <form
+        action="http://localhost:4000/api/signup"
+        enctype="multipart/form-data"
+        method="POST"
+      >
+        <div style="margin-block-end: 8px">
+          <label for="usernameSignUp">이름</label>
+          <input
+            type="text"
+            name="username"
+            id="usernameSignUp"
+          />
+        </div>
+        <div style="margin-block-end: 8px">
+          <label for="userEmailSignUp">이메일</label>
+          <input
+            type="email"
+            name="useremail"
+            id="userEmailSignUp"
+          />
+        </div>
+        <div style="margin-block-end: 8px">
+          <label for="userPasswordSignUp">패스워드</label>
+          <input
+            type="password"
+            name="userpassword"
+            id="userPasswordSignUp"
+          />
+        </div>
+        <div style="margin-block-end: 8px">
+          <label for="userProfileSignUp">프로필 이미지</label>
+          <input
+            type="file"
+            name="userprofile"
+            id="userProfileSignUp"
+            accept=".jpg,.jpeg,.png,.svg,.webp"
+          />
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <label for="userProfileSignUp">가입 인사말</label>
+          <textarea
+            cols="40"
+            rows="6"
+            style="resize: none"
+          >짧고 굵게 간단한 인사말을 작성해주세요. (300자 이상)</textarea>
+        </div>
+        <button type="submit">회원가입</button>
+        <button type="reset">초기화</button>
+      </form>
+    </section>
+
+    <hr style="margin-block-start: 32px;" />
+
+    <section style="margin-inline: 48px">
+      <h2>
+        헬로!~ <abbr title="Hyper Text Markup Language">HTML</abbr> Form 컨트롤
+        (GET
+        메서드)
+      </h2>
+      <form action="http://localhost:4000/api/hello">
+        <div style="margin-block-end: 8px">
+          <label for="usernameInput">이름</label>
+          <input
+            type="text"
+            name="username"
+            id="usernameInput"
+          />
+        </div>
+        <div style="margin-block-end: 8px">
+          <label for="userEmailInput">이메일</label>
+          <input
+            type="email"
+            name="useremail"
+            id="userEmailInput"
+          />
+        </div>
+        <button type="submit">제출</button>
+        <button type="reset">초기화</button>
+      </form>
+    </section>
+  </div>
+</body>
+</html>
