@@ -16,7 +16,7 @@ function HistoryItem({
         'rounded-md',
         'bg-slate-800 text-white',
         'text-xs',
-        'hover:bg-black',
+        'hover:not-[aria-disabled=true]:bg-black',
         className
       )}
       {...restProps}

@@ -6,6 +6,7 @@ const navList = [
   { id: 'item-2', content: '회원가입', href: 'signup' },
   { id: 'item-3', content: '상태 관리 전략', href: 'state-management' },
   { id: 'item-4', content: '틱택토', href: 'tic-tac-toe' },
+  { id: 'item-5', content: '오류 경계', href: 'error-boundary' },
 ];
 
 function Nav() {

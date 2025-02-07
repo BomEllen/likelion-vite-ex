@@ -85,7 +85,7 @@ function TicTacToe() {
       />
       <History
         count={gameHistory.length}
-        onReGame={handleReGame}
+        gameOrder={gameOrder}
         onTimeTravel={handleTimeTravel}
       />
     </article>

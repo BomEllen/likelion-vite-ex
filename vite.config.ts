@@ -8,9 +8,6 @@ const viteConfig = defineConfig((env) => {
 
   return {
     plugins: [
-      react({
-        jsxRuntime: 'automatic',
-      }),
       tailwindcss(),
     ],
     server: {
