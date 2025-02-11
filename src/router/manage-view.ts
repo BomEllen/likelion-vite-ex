@@ -10,3 +10,13 @@ export const setView = (route: string) => {
   url.searchParams.set(VIEW, route);
   history.pushState({}, '', url);
 };
+
+const body = document.body;
+
+export const resetActiveFocus = () => {
+  if (!body.getAttribute('tabindex')) {
+    body.setAttribute('tabindex', '-1');
+  }
+
+  body.focus();
+};

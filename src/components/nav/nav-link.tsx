@@ -1,13 +1,13 @@
 import { tm } from '@/utils/tw-merge';
-import { getView, setView } from '@/router/manage-view';
+import { getView, resetActiveFocus, setView } from '@/router/manage-view';
 
 type WithoutHref = Omit<React.ComponentProps<'a'>, 'href'>;
 type OnChangeRoute = React.Dispatch<React.SetStateAction<string>>;
 
 type NavLinkProps = WithoutHref & {
-  href: string;
   onChangeRoute: OnChangeRoute;
   activeClassName?: string;
+  href: string;
 };
 
 function NavLink({
@@ -28,6 +28,8 @@ function NavLink({
     onChangeRoute(href);
     // Playground 컴포넌트의 상태 업데이트 요청
     setView(href);
+    // 페이지 이동 후, 문서에 초점이동
+    resetActiveFocus();
   };
 
   return (

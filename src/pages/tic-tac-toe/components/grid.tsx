@@ -9,8 +9,61 @@ interface GridProps {
 }
 
 function Grid({ cells, winner, onPlay }: GridProps) {
+  const handleKeyControl = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const buttons = Array.from(e.currentTarget.querySelectorAll('button'));
+    const activeButtonIndex = buttons.findIndex(
+      (button) => document.activeElement === button
+    );
+
+    const lastCellIndex = cells.length - 1;
+    let nextMoveIndex = activeButtonIndex;
+
+    switch (e.code) {
+      case 'ArrowUp': {
+        nextMoveIndex = activeButtonIndex - 3;
+        if (nextMoveIndex < 0) return;
+        break;
+      }
+      case 'ArrowDown': {
+        nextMoveIndex = activeButtonIndex + 3;
+
+        if (
+          (nextMoveIndex % 3 === 0 && nextMoveIndex > lastCellIndex - 2) ||
+          (nextMoveIndex % 3 === 1 && nextMoveIndex > lastCellIndex - 1) ||
+          (nextMoveIndex % 3 === 2 && nextMoveIndex > lastCellIndex)
+        ) {
+          return;
+        }
+
+        break;
+      }
+      case 'ArrowRight':
+        {
+          nextMoveIndex = activeButtonIndex + 1;
+
+          if (nextMoveIndex % 3 === 0) {
+            return;
+          }
+        }
+        break;
+      case 'ArrowLeft': {
+        nextMoveIndex = activeButtonIndex - 1;
+        if (nextMoveIndex % 3 < 0 || nextMoveIndex % 3 === 3 - 1) {
+          return;
+        }
+      }
+    }
+
+    buttons[nextMoveIndex]?.focus();
+  };
+
   return (
-    <div className={tm('grid grid-rows-3 grid-cols-3 gap-1')}>
+    <div
+      role="grid"
+      tabIndex={-1}
+      className={tm('grid grid-rows-3 grid-cols-3 gap-1')}
+      onKeyDown={handleKeyControl}
+    >
       {cells.map((cell, index) => {
         let winnerClasses = '';
 

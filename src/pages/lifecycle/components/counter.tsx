@@ -80,8 +80,21 @@ class Counter extends Component<Props, State> {
     nextProps: Readonly<RequiredProps>,
     nextState: Readonly<State>
   ): boolean {
-    if (nextProps.max < nextState.count) {
-      console.log('렌더링 차단');
+    const { min, max } = nextProps as RequiredProps;
+
+    if (max < nextState.count) {
+      console.log('count 값이 max 범위를 넘어서서 렌더링 차단됨');
+      this.setState({
+        count: max,
+      });
+      return false;
+    }
+
+    if (min > nextState.count) {
+      console.log('count 값이 min 범위를 넘어서서 렌더링 차단됨');
+      this.setState({
+        count: min,
+      });
       return false;
     }
 
@@ -104,7 +117,8 @@ class Counter extends Component<Props, State> {
       <div className={tm('flex flex-col gap-2 items-start')}>
         <h2 className="sr-only">카운터</h2>
         <output className={tm('font-semibold text-3xl text-react')}>
-          {this.state.count} {this.state.doubleCount}
+          {this.state.count} <span className="font-thin">/</span>{' '}
+          {this.state.doubleCount}
         </output>
         <div className={tm('flex', '*:hover:bg-sky-800 *:cursor-pointer')}>
           <button
@@ -179,9 +193,9 @@ class Counter extends Component<Props, State> {
     // 사이드 이펙트
     // 리액트 렌더링 프로세스와 상관없는 일 처리
     if (this.state.count > 9) {
-      document.body.classList.add('bg-react', 'text-white');
+      document.body.classList.add('bg-react', 'text-react');
     } else {
-      document.body.classList.remove('bg-react', 'text-white');
+      document.body.classList.remove('bg-react', 'text-react');
     }
   }
 
