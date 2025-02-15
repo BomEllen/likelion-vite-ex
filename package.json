@@ -54,8 +54,10 @@
     "@mynaui/icons-react": "0.3.3",
     "clsx": "2.1.1",
     "lodash-es": "4.17.21",
+    "motion": "12.4.2",
     "react": "19",
     "react-dom": "19",
-    "react-error-boundary": "5.0.0"
+    "react-error-boundary": "5.0.0",
+    "vanilla-tilt": "1.8.1"
   }
 }

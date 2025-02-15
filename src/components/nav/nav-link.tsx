@@ -1,5 +1,6 @@
 import { tm } from '@/utils/tw-merge';
 import { getView, resetActiveFocus, setView } from '@/router/manage-view';
+import { deleteQueryParam } from '@/pages/search-list/utils/query-param';
 
 type WithoutHref = Omit<React.ComponentProps<'a'>, 'href'>;
 type OnChangeRoute = React.Dispatch<React.SetStateAction<string>>;
@@ -30,6 +31,8 @@ function NavLink({
     setView(href);
     // 페이지 이동 후, 문서에 초점이동
     resetActiveFocus();
+    // 다른 페이지 이동 시, 검색 쿼리 삭제
+    deleteQueryParam();
   };
 
   return (
