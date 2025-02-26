@@ -26,10 +26,13 @@ import SearchedList from './components/searched-list';
 import SearchForm from './components/search-form-18-version';
 import colorMoodList from './data/color-mood-list';
 import { type ColorMoodItem } from './types';
+import useDocumentTitle from '@/hooks/use-document-title';
 
 const getQueryState = () => getQueryParam() ?? '';
 
 function SearchListPage() {
+  useDocumentTitle('검색 리스트 UI 구현');
+
   console.log('render: search list page');
   const [list, setList] = useState<ColorMoodItem[]>(colorMoodList);
 

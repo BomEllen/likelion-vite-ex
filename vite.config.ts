@@ -7,7 +7,21 @@ const viteConfig = defineConfig((env) => {
   const isDevMode = env.mode.includes('development');
 
   return {
+    base: isDevMode ? '/' : '/likelion-react-12/',
     plugins: [
+      react({
+        jsxRuntime: 'automatic',
+        babel: {
+          plugins: [
+            [
+              '@locator/babel-jsx/dist',
+              {
+                env: 'development',
+              },
+            ],
+          ],
+        },
+      }),
       tailwindcss(),
     ],
     server: {

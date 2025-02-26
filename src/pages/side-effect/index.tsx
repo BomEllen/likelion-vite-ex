@@ -3,8 +3,11 @@ import { tm } from '@/utils/tw-merge';
 import throttle from 'lodash-es/throttle';
 import debounce from 'lodash-es/debounce';
 import shuffle from 'lodash-es/shuffle';
+import useDocumentTitle from '@/hooks/use-document-title';
 
 function SideEffectDemo() {
+  useDocumentTitle('사이드 이펙트 관리 (외부 시스템과 동기화)');
+
   const throttleTimeId = useId();
 
   const [mouse, setMouse] = useState({ x: 0, y: 0 });

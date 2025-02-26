@@ -1,15 +1,15 @@
+import usePrev from '@/hooks/use-prev';
 import { tm } from '@/utils/tw-merge';
 import { /* useRef, */ useState } from 'react';
 
 function CounterFunction() {
   const [count, setCount] = useState(9);
 
-  // useRef 훅의 작동 원리
-  // const prevCountValueRef = useRef(count);
-  const [prevCountValueRef] = useState({ current: count });
+  const prevCount = usePrev(count);
+
+  console.log({ prevCount });
 
   const handleIncrease = () => {
-    prevCountValueRef.current = count;
     setCount(count + 10);
   };
 
@@ -33,7 +33,7 @@ function CounterFunction() {
           <dt className="text-slate-900">
             이전 count 값 (prevCountValueRef.current)
           </dt>
-          <dd className="font-black">{prevCountValueRef.current}</dd>
+          <dd className="font-black">{prevCount?.toString()}</dd>
         </div>
         <div className="flex justify-between">
           <dt className="text-slate-900">현재 count 값</dt>

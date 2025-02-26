@@ -3,8 +3,11 @@ import { ErrorBoundary } from 'react-error-boundary';
 import ErrorDisplay from './user-defined-fallback-ui';
 import { tm } from '@/utils/tw-merge';
 import Wrapper from './wrapper';
+import useDocumentTitle from '@/hooks/use-document-title';
 
 function ErrorBoundaryDemo() {
+  useDocumentTitle('에러 바운더리');
+
   const handleError = (_error: Error, info: ErrorInfo) => {
     console.error(info.componentStack);
   };

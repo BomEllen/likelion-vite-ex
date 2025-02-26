@@ -2,8 +2,11 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import SearchInput from './components/search-input';
 import TiltBox from './components/tilt-box';
 import { tm } from '@/utils/tw-merge';
+import useDocumentTitle from '@/hooks/use-document-title';
 
 function AccessDOMPage() {
+  useDocumentTitle('DOM 접근/조작');
+
   const [isParse, setIsParse] = useState(false);
 
   const searchInputRef = useRef<HTMLInputElement>(null);

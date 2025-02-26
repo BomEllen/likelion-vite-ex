@@ -1,6 +1,9 @@
+import useDocumentTitle from '@/hooks/use-document-title';
 import AccordionList from './components/accordion-list';
 
 function StateManagement() {
+  useDocumentTitle('React 상태 관리');
+
   return (
     <section className="transform">
       <h2 className="sr-only">상태 관리</h2>

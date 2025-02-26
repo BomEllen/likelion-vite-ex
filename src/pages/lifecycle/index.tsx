@@ -1,7 +1,10 @@
 import { tm } from '@/utils/tw-merge';
 import Counter from './components/counter';
+import useDocumentTitle from '@/hooks/use-document-title';
 
 function LifecycleDemo() {
+  useDocumentTitle('클래스 컴포넌트 라이프 사이클');
+
   return (
     <section className={tm('flex flex-col gap-2 mt-6')}>
       <h2 className={tm('text-2xl')}>라이프사이클 (Lifecycles)</h2>

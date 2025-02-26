@@ -4,8 +4,11 @@ import StaggerList from './components/stagger-list';
 import AnimationBox from './components/animation-box';
 import ReplayAnimation from './components/replay-animation';
 import MotionComponent from './components/motion-component';
+import useDocumentTitle from '@/hooks/use-document-title';
 
 function AnimationWithMotionPage() {
+  useDocumentTitle('Motion 라이브러리 활용');
+
   // 하위 컴포넌트 DOM 요소 참조를 위한 참조(ref) 객체
   const childDomRef = useRef<HTMLButtonElement>(null);
 

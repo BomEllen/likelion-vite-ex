@@ -1,9 +1,9 @@
-import { getPublicImage } from '@/utils/getPublic';
+import { getPublicIcon } from '@/utils/getPublic';
 import { tm } from '@/utils/tw-merge';
 
+const imagePath = getPublicIcon('react.svg');
+
 function ReactPingIcon({ size = 20 }: { size?: number }) {
-  const imagePath = getPublicImage('react.svg');
-  
   return (
     <span className="relative">
       <img src={imagePath} alt="React" height={size} width={size} />

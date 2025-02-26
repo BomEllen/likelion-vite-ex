@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { getPublicImage } from './utils/getPublic';
 import { getView } from '@/router/manage-view';
 import ReactPingIcon from '@/components/react-ping-icon';
 import Nav from '@/components/nav';
@@ -38,8 +39,19 @@ function Playground() {
 
   return (
     <section className="Playground bg-euid-gray-200 wrapper">
-      <h1 lang="en" className="flex items-center gap-2 font-normal text-react">
-        <ReactPingIcon size={24} /> Playground
+      <h1
+        lang="en"
+        className="flex items-center justify-between gap-2 font-normal text-react"
+      >
+        <span className="flex items-center gap-2">
+          <ReactPingIcon size={24} /> Playground
+        </span>
+        <img
+          hidden
+          src={getPublicImage('bear-transparent.png')}
+          alt="베어"
+          className="size-6 animate-rotate-y"
+        />
       </h1>
       <Nav onChangeRoute={setRoute} />
       <Router route={route} />

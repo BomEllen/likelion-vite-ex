@@ -9,8 +9,11 @@ import {
   INITIAL_CELLS,
   type Cells,
 } from './constants';
+import useDocumentTitle from '@/hooks/use-document-title';
 
 function TicTacToe() {
+  useDocumentTitle('틱택토 게임 (with 시간여행 기능)');
+
   // [상태]
   // 게임 보드 셀(cells, 9개(3 x 3))
   const [gameHistory, setGameHistory] = useState<Cells[]>([INITIAL_CELLS]);

@@ -3,6 +3,7 @@ import S from './style.module.css';
 import FormInput from '@/components/form-input';
 import ActionButton from '@/components/action-button';
 import { isEmail, isPassword } from '@/lib/validator';
+import useDocumentTitle from '@/hooks/use-document-title';
 
 interface SignUpFormData {
   username: string;
@@ -19,6 +20,8 @@ interface EventData {
 }
 
 function HomeworkSignUpForm() {
+  useDocumentTitle('사용자 가입 폼');
+
   const [formData, setFormData] = useState<SignUpFormData>({
     username: '',
     useremail: '',

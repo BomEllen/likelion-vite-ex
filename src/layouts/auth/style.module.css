@@ -1,0 +1,32 @@
+.layout {
+  display: flex;
+  flex-flow: column;
+  height: 100vh;
+  background: #000;
+
+  @media (min-width: 480px) {
+    flex-flow: row;
+  }
+}
+
+.main {
+  width: 50vw;
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+
+}
+
+.AD {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50vw;
+  height: inherit;
+  background-color: #fff;
+  font-size: 24px;
+  color: #000;
+
+}
